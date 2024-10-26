@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { useRouter, usePathname } from 'next/navigation'
+import { Network, User } from 'lucide-react'
 
 export default function InnerLayout({ children }: { children: React.ReactNode }) {
     const router = useRouter()
@@ -10,7 +11,20 @@ export default function InnerLayout({ children }: { children: React.ReactNode })
     return (
         <div className="min-h-screen bg-[#001A1A] flex flex-col">
             {/* Header */}
-            <div className="bg-blue-900 h-12 w-full" />
+            <div className="bg-blue-900 h-12 w-full flex justify-between items-center px-4">
+                <div /> {/* Empty div for spacing */}
+                <div className="flex items-center gap-4">
+                    <button 
+                        className="p-2" 
+                        onClick={() => router.push('/organisation')}
+                    >
+                        <Network size={24} color="white" strokeWidth={2} />
+                    </button>
+                    <button className="p-2">
+                        <User size={24} color="white" strokeWidth={2} />
+                    </button>
+                </div>
+            </div>
             
             {/* Main Content */}
             <div className="flex-1">
