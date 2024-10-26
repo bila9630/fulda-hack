@@ -1,7 +1,39 @@
 import { Search, FileText, Key, Link2, Home, Plus } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 
+interface ContentCard {
+    title: string;
+    date: string;
+    description: string;
+    members: string[];
+}
+
+function getMockContentCards(): ContentCard[] {
+    return [
+        {
+            title: "Projektplanung 2024",
+            date: "26.10.2024",
+            description: "Ersten Paar Zeilen Inhalt. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo...",
+            members: ["Julian Damm", "David Sayk", "+3 Weitere"]
+        },
+        {
+            title: "Marketing Strategie",
+            date: "25.10.2024",
+            description: "Überarbeitung der Social Media Strategie für Q4. Fokus auf neue Produkteinführung und Verbesserung der Kundeninteraktion auf allen Kanälen...",
+            members: ["Sarah Meyer", "Thomas Berg", "+2 Weitere"]
+        },
+        {
+            title: "Quartalsbericht Q3",
+            date: "24.10.2024",
+            description: "Zusammenfassung der Geschäftsergebnisse für das dritte Quartal. Analyse der KPIs und Vorbereitung der Präsentation für das Management Meeting...",
+            members: ["Michael Schmidt", "Lisa Weber", "+4 Weitere"]
+        },
+    ];
+}
+
 export default function HomePage() {
+    const contentCards = getMockContentCards();
+
     return (
         <div className="flex flex-col h-full p-4">
             {/* Header */}
@@ -36,32 +68,22 @@ export default function HomePage() {
             <div className="flex flex-col gap-4">
                 <h2 className="text-white text-sm">Zuletzt Bearbeitet:</h2>
                 
-                {/* Content Card */}
-                <div className="bg-white/10 p-4 rounded-lg">
-                    <div className="flex justify-between items-start mb-2">
-                        <h3 className="text-white font-medium">Titel</h3>
-                        <span className="text-sm text-gray-400">26.10.2024</span>
-                    </div>
-                    <p className="text-sm text-gray-300 mb-4">
-                        Ersten Paar Zeilen Inhalt. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo...
-                    </p>
-                    <p className="text-sm text-gray-400">
-                        Mitarbeitende: Julian Damm, David Sayk, +3 Weitere
-                    </p>
-                </div>
-
-                {/* Second Card (with key icon) */}
-                <div className="bg-white/10 p-4 rounded-lg">
-                    <div className="flex justify-between items-start">
-                        <h3 className="text-white font-medium">Titel</h3>
-                        <div className="flex gap-2">
-                            <span className="text-sm text-gray-400">26.10.2024</span>
-                            <Key className="w-5 h-5 text-blue-500" />
+                {/* Content Cards */}
+                {contentCards.map((card, index) => (
+                    <div key={index} className="bg-white/10 p-4 rounded-lg">
+                        <div className="flex justify-between items-start mb-2">
+                            <h3 className="text-white font-medium">{card.title}</h3>
+                            <span className="text-sm text-gray-400">{card.date}</span>
                         </div>
+                        <p className="text-sm text-gray-300 mb-4">
+                            {card.description}
+                        </p>
+                        <p className="text-sm text-gray-400">
+                            Mitarbeitende: {card.members.join(", ")}
+                        </p>
                     </div>
-                </div>
+                ))}
             </div>
-
         </div>
     );
 }
