@@ -20,7 +20,10 @@ export default function InnerLayout({ children }: { children: React.ReactNode })
                     >
                         <Network size={24} color="white" strokeWidth={2} />
                     </button>
-                    <button className="p-2">
+                    <button 
+                        className="p-2"
+                        onClick={() => router.push('/account')}
+                    >
                         <User size={24} color="white" strokeWidth={2} />
                     </button>
                 </div>
